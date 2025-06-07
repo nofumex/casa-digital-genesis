@@ -26,7 +26,8 @@ import {
   Mail,
   Phone,
   ExternalLink,
-  X
+  X,
+  Headphones
 } from 'lucide-react';
 
 const Index = () => {
@@ -151,7 +152,7 @@ const Index = () => {
   const testimonials = [
     {
       name: "Александр Петров",
-      company: "ТechCorp",
+      company: "TechCorp",
       role: "Генеральный директор",
       text: "Casa Digital превзошли все наши ожидания. Новый сайт увеличил количество лидов в 3 раза!",
       rating: 5,
@@ -187,33 +188,29 @@ const Index = () => {
       {/* Header */}
       <header className="fixed top-0 w-full z-50 glass-effect">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="text-2xl font-bold bg-gradient-to-r from-casa-blue-dark to-casa-teal-dark bg-clip-text text-transparent">
+          <div className="text-2xl font-bold text-slate-800">
             Casa Digital
           </div>
           <nav className="hidden md:flex space-x-8">
-            <button onClick={() => scrollToSection('about')} className="text-casa-gray-dark hover:text-casa-blue-dark transition-colors">О нас</button>
-            <button onClick={() => scrollToSection('portfolio')} className="text-casa-gray-dark hover:text-casa-blue-dark transition-colors">Портфолио</button>
-            <button onClick={() => scrollToSection('services')} className="text-casa-gray-dark hover:text-casa-blue-dark transition-colors">Услуги</button>
-            <button onClick={() => scrollToSection('contact')} className="text-casa-gray-dark hover:text-casa-blue-dark transition-colors">Контакты</button>
+            <button onClick={() => scrollToSection('about')} className="text-slate-600 hover:text-slate-800 transition-colors">О нас</button>
+            <button onClick={() => scrollToSection('portfolio')} className="text-slate-600 hover:text-slate-800 transition-colors">Портфолио</button>
+            <button onClick={() => scrollToSection('services')} className="text-slate-600 hover:text-slate-800 transition-colors">Услуги</button>
+            <button onClick={() => scrollToSection('contact')} className="text-slate-600 hover:text-slate-800 transition-colors">Контакты</button>
           </nav>
-          <Button onClick={() => scrollToSection('contact')} className="btn-primary hidden md:block">
-            <MessageCircle className="w-4 h-4 mr-2" />
-            Обсудить проект
-          </Button>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-casa-sage to-casa-lavender overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-blue-50 overflow-hidden">
         <div className="container mx-auto px-4 relative z-10 text-center">
           <div className="animate-fade-in">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-casa-gray-dark">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-slate-800">
               Создаём сайты,<br />
               <span className="text-gradient">
                 которые приносят прибыль
               </span>
             </h1>
-            <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-casa-gray-dark/80">
+            <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-slate-600">
               От студии до маркетингового агентства — помогаем бизнесу расти в digital
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -230,13 +227,13 @@ const Index = () => {
         
         {/* Floating elements */}
         <div className="absolute top-20 left-10 animate-float">
-          <Code className="w-12 h-12 text-casa-blue/50" />
+          <Code className="w-12 h-12 text-blue-300/50" />
         </div>
         <div className="absolute bottom-20 right-10 animate-float" style={{ animationDelay: '1s' }}>
-          <Smartphone className="w-16 h-16 text-casa-teal/50" />
+          <Smartphone className="w-16 h-16 text-green-300/50" />
         </div>
         <div className="absolute top-1/2 left-20 animate-float" style={{ animationDelay: '2s' }}>
-          <Palette className="w-10 h-10 text-casa-lavender/50" />
+          <Palette className="w-10 h-10 text-purple-300/50" />
         </div>
       </section>
 
@@ -245,7 +242,7 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 animate-slide-up">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gradient">О нас</h2>
-            <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
               Casa Digital — это команда экспертов, которая создаёт не просто сайты, а инструменты для роста. 
               Мы адаптируемся под ваш бизнес и масштабируем решения.
             </p>
@@ -253,18 +250,18 @@ const Index = () => {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: Zap, title: "Скорость разработки", desc: "Запускаем проекты в сжатые сроки без потери качества", color: "casa-coral" },
-              { icon: Palette, title: "Индивидуальный дизайн", desc: "Создаем уникальные решения под ваш бренд", color: "casa-lavender" },
-              { icon: Users, title: "Поддержка 24/7", desc: "Всегда на связи для решения любых вопросов", color: "casa-sage" },
-              { icon: Award, title: "Гибкие условия", desc: "Адаптируем процессы под ваши потребности", color: "casa-blue" }
+              { icon: Zap, title: "Скорость разработки", desc: "Запускаем проекты в сжатые сроки без потери качества", color: "orange" },
+              { icon: Palette, title: "Индивидуальный дизайн", desc: "Создаем уникальные решения под ваш бренд", color: "purple" },
+              { icon: Headphones, title: "Поддержка 24/7", desc: "Всегда на связи для решения любых вопросов", color: "green" },
+              { icon: Users, title: "Гибкие условия", desc: "Адаптируем процессы под ваши потребности", color: "blue" }
             ].map((item, index) => (
               <Card key={index} className="card-hover border-0 shadow-sm bg-white/70 backdrop-blur-sm">
                 <CardContent className="p-8 text-center">
-                  <div className={`w-16 h-16 bg-${item.color} rounded-3xl flex items-center justify-center mx-auto mb-6`}>
-                    <item.icon className="w-8 h-8 text-white" />
+                  <div className={`w-16 h-16 bg-${item.color}-200 rounded-3xl flex items-center justify-center mx-auto mb-6`}>
+                    <item.icon className={`w-8 h-8 text-${item.color}-600`} />
                   </div>
-                  <h3 className="text-xl font-semibold mb-4 text-casa-gray-dark">{item.title}</h3>
-                  <p className="text-muted-foreground">{item.desc}</p>
+                  <h3 className="text-xl font-semibold mb-4 text-slate-700">{item.title}</h3>
+                  <p className="text-slate-600">{item.desc}</p>
                 </CardContent>
               </Card>
             ))}
@@ -558,22 +555,17 @@ const Index = () => {
       <Dialog open={showPromoPopup} onOpenChange={setShowPromoPopup}>
         <DialogContent className="max-w-md">
           <div className="text-center p-6">
-            <div className="w-20 h-20 bg-gradient-casa rounded-full flex items-center justify-center mx-auto mb-6">
+            <div className="w-20 h-20 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full flex items-center justify-center mx-auto mb-6">
               <Award className="w-10 h-10 text-white" />
             </div>
             <h3 className="text-2xl font-bold mb-4">Специальное предложение!</h3>
-            <p className="text-muted-foreground mb-6">
-              Получите <span className="text-casa-coral-dark font-bold">10% скидку</span> на первый заказ. 
+            <p className="text-slate-600 mb-6">
+              Получите <span className="text-orange-500 font-bold">10% скидку</span> на первый заказ. 
               Укажите промокод <span className="font-bold">WELCOME10</span> в форме заявки.
             </p>
-            <div className="flex space-x-4">
-              <Button onClick={() => setShowPromoPopup(false)} className="btn-primary flex-1">
-                Получить скидку
-              </Button>
-              <Button variant="outline" onClick={() => setShowPromoPopup(false)} size="icon">
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
+            <Button onClick={() => setShowPromoPopup(false)} className="btn-primary w-full">
+              Получить скидку
+            </Button>
           </div>
         </DialogContent>
       </Dialog>
