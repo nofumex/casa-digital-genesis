@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -47,6 +46,13 @@ const Index = () => {
     }, 30000);
     return () => clearTimeout(timer);
   }, []);
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -177,18 +183,20 @@ const Index = () => {
     : portfolioItems.filter(item => item.category === selectedCategory);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-soft">
       {/* Header */}
       <header className="fixed top-0 w-full z-50 glass-effect">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="text-2xl font-bold text-gradient">Casa Digital</div>
+          <div className="text-2xl font-bold bg-gradient-to-r from-casa-blue-dark to-casa-teal-dark bg-clip-text text-transparent">
+            Casa Digital
+          </div>
           <nav className="hidden md:flex space-x-8">
-            <a href="#about" className="hover:text-casa-blue transition-colors">О нас</a>
-            <a href="#portfolio" className="hover:text-casa-blue transition-colors">Портфолио</a>
-            <a href="#services" className="hover:text-casa-blue transition-colors">Услуги</a>
-            <a href="#contact" className="hover:text-casa-blue transition-colors">Контакты</a>
+            <button onClick={() => scrollToSection('about')} className="text-casa-gray-dark hover:text-casa-blue-dark transition-colors">О нас</button>
+            <button onClick={() => scrollToSection('portfolio')} className="text-casa-gray-dark hover:text-casa-blue-dark transition-colors">Портфолио</button>
+            <button onClick={() => scrollToSection('services')} className="text-casa-gray-dark hover:text-casa-blue-dark transition-colors">Услуги</button>
+            <button onClick={() => scrollToSection('contact')} className="text-casa-gray-dark hover:text-casa-blue-dark transition-colors">Контакты</button>
           </nav>
-          <Button className="btn-primary hidden md:block">
+          <Button onClick={() => scrollToSection('contact')} className="btn-primary hidden md:block">
             <MessageCircle className="w-4 h-4 mr-2" />
             Обсудить проект
           </Button>
@@ -196,25 +204,24 @@ const Index = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center bg-gradient-hero overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="container mx-auto px-4 relative z-10 text-center text-white">
+      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-casa-sage to-casa-lavender overflow-hidden">
+        <div className="container mx-auto px-4 relative z-10 text-center">
           <div className="animate-fade-in">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-casa-gray-dark">
               Создаём сайты,<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">
+              <span className="text-gradient">
                 которые приносят прибыль
               </span>
             </h1>
-            <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto opacity-90">
+            <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-casa-gray-dark/80">
               От студии до маркетингового агентства — помогаем бизнесу расти в digital
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="btn-primary text-lg px-10 py-4">
+              <Button onClick={() => scrollToSection('contact')} size="lg" className="btn-primary text-lg px-10 py-4">
                 Оставить заявку
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
-              <Button size="lg" variant="outline" className="btn-secondary text-lg px-10 py-4 text-white border-white hover:bg-white hover:text-casa-blue">
+              <Button onClick={() => scrollToSection('portfolio')} size="lg" variant="outline" className="btn-secondary text-lg px-10 py-4">
                 Посмотреть портфолио
               </Button>
             </div>
@@ -223,18 +230,18 @@ const Index = () => {
         
         {/* Floating elements */}
         <div className="absolute top-20 left-10 animate-float">
-          <Code className="w-12 h-12 text-white/30" />
+          <Code className="w-12 h-12 text-casa-blue/50" />
         </div>
         <div className="absolute bottom-20 right-10 animate-float" style={{ animationDelay: '1s' }}>
-          <Smartphone className="w-16 h-16 text-white/30" />
+          <Smartphone className="w-16 h-16 text-casa-teal/50" />
         </div>
         <div className="absolute top-1/2 left-20 animate-float" style={{ animationDelay: '2s' }}>
-          <Palette className="w-10 h-10 text-white/30" />
+          <Palette className="w-10 h-10 text-casa-lavender/50" />
         </div>
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-background">
+      <section id="about" className="py-20 bg-white/50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 animate-slide-up">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gradient">О нас</h2>
@@ -246,17 +253,17 @@ const Index = () => {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: Zap, title: "Скорость разработки", desc: "Запускаем проекты в сжатые сроки без потери качества" },
-              { icon: Palette, title: "Индивидуальный дизайн", desc: "Создаем уникальные решения под ваш бренд" },
-              { icon: Users, title: "Поддержка 24/7", desc: "Всегда на связи для решения любых вопросов" },
-              { icon: Award, title: "Гибкие условия", desc: "Адаптируем процессы под ваши потребности" }
+              { icon: Zap, title: "Скорость разработки", desc: "Запускаем проекты в сжатые сроки без потери качества", color: "casa-coral" },
+              { icon: Palette, title: "Индивидуальный дизайн", desc: "Создаем уникальные решения под ваш бренд", color: "casa-lavender" },
+              { icon: Users, title: "Поддержка 24/7", desc: "Всегда на связи для решения любых вопросов", color: "casa-sage" },
+              { icon: Award, title: "Гибкие условия", desc: "Адаптируем процессы под ваши потребности", color: "casa-blue" }
             ].map((item, index) => (
-              <Card key={index} className="card-hover border-0 shadow-lg bg-white/50 backdrop-blur-sm">
+              <Card key={index} className="card-hover border-0 shadow-sm bg-white/70 backdrop-blur-sm">
                 <CardContent className="p-8 text-center">
-                  <div className="w-16 h-16 bg-gradient-casa rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <div className={`w-16 h-16 bg-${item.color} rounded-3xl flex items-center justify-center mx-auto mb-6`}>
                     <item.icon className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-4">{item.title}</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-casa-gray-dark">{item.title}</h3>
                   <p className="text-muted-foreground">{item.desc}</p>
                 </CardContent>
               </Card>
@@ -266,7 +273,7 @@ const Index = () => {
       </section>
 
       {/* Portfolio Section */}
-      <section id="portfolio" className="py-20 bg-muted/30">
+      <section id="portfolio" className="py-20 bg-casa-gray/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gradient">Портфолио</h2>
@@ -291,24 +298,24 @@ const Index = () => {
             {filteredPortfolio.map((item) => (
               <Dialog key={item.id}>
                 <DialogTrigger asChild>
-                  <Card className="card-hover cursor-pointer overflow-hidden border-0 shadow-lg">
+                  <Card className="card-hover cursor-pointer overflow-hidden border-0 shadow-sm bg-white/70">
                     <div className="relative">
                       <img 
                         src={item.image} 
                         alt={item.title}
                         className="w-full h-48 object-cover"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                      <Badge className="absolute top-4 left-4 bg-casa-orange text-white">
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                      <Badge className="absolute top-4 left-4 bg-casa-coral-dark text-white">
                         {item.category}
                       </Badge>
                     </div>
                     <CardContent className="p-6">
-                      <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                      <p className="text-casa-blue font-medium mb-4">{item.results}</p>
+                      <h3 className="text-xl font-semibold mb-2 text-casa-gray-dark">{item.title}</h3>
+                      <p className="text-casa-blue-dark font-medium mb-4">{item.results}</p>
                       <div className="flex flex-wrap gap-2">
                         {item.tech.map((tech) => (
-                          <Badge key={tech} variant="secondary">{tech}</Badge>
+                          <Badge key={tech} variant="secondary" className="bg-casa-lavender text-casa-lavender-dark">{tech}</Badge>
                         ))}
                       </div>
                     </CardContent>
@@ -323,12 +330,12 @@ const Index = () => {
                     />
                     <div>
                       <h3 className="text-2xl font-bold mb-2">{item.title}</h3>
-                      <Badge className="bg-casa-orange text-white mb-4">{item.category}</Badge>
+                      <Badge className="bg-casa-coral-dark text-white mb-4">{item.category}</Badge>
                       <p className="text-muted-foreground mb-4">{item.description}</p>
                       <div className="space-y-4">
                         <div>
                           <h4 className="font-semibold mb-2">Результат:</h4>
-                          <p className="text-casa-blue font-medium">{item.results}</p>
+                          <p className="text-casa-blue-dark font-medium">{item.results}</p>
                         </div>
                         <div>
                           <h4 className="font-semibold mb-2">Технологии:</h4>
@@ -349,7 +356,7 @@ const Index = () => {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 bg-background">
+      <section id="services" className="py-20 bg-white/50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gradient">Услуги</h2>
@@ -358,19 +365,19 @@ const Index = () => {
 
           <div className="grid md:grid-cols-2 gap-8">
             {services.map((service, index) => (
-              <Card key={index} className="card-hover border-0 shadow-lg overflow-hidden">
+              <Card key={index} className="card-hover border-0 shadow-sm overflow-hidden bg-white/70">
                 <CardContent className="p-8">
                   <div className="flex items-start space-x-6">
-                    <div className="w-16 h-16 bg-gradient-casa rounded-2xl flex items-center justify-center flex-shrink-0">
+                    <div className="w-16 h-16 bg-gradient-casa rounded-3xl flex items-center justify-center flex-shrink-0">
                       <service.icon className="w-8 h-8 text-white" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-2xl font-semibold mb-4">{service.title}</h3>
+                      <h3 className="text-2xl font-semibold mb-4 text-casa-gray-dark">{service.title}</h3>
                       <p className="text-muted-foreground mb-6">{service.description}</p>
                       <ul className="space-y-2">
                         {service.features.map((feature, idx) => (
                           <li key={idx} className="flex items-center">
-                            <CheckCircle className="w-5 h-5 text-casa-blue mr-3" />
+                            <CheckCircle className="w-5 h-5 text-casa-sage-dark mr-3" />
                             <span>{feature}</span>
                           </li>
                         ))}
@@ -385,7 +392,7 @@ const Index = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-muted/30">
+      <section className="py-20 bg-casa-gray/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gradient">Отзывы клиентов</h2>
@@ -394,7 +401,7 @@ const Index = () => {
 
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="card-hover border-0 shadow-lg">
+              <Card key={index} className="card-hover border-0 shadow-sm bg-white/70">
                 <CardContent className="p-8">
                   <div className="flex items-center mb-6">
                     <img 
@@ -403,14 +410,14 @@ const Index = () => {
                       className="w-16 h-16 rounded-full mr-4"
                     />
                     <div>
-                      <h4 className="font-semibold">{testimonial.name}</h4>
+                      <h4 className="font-semibold text-casa-gray-dark">{testimonial.name}</h4>
                       <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                      <p className="text-sm text-casa-blue">{testimonial.company}</p>
+                      <p className="text-sm text-casa-blue-dark">{testimonial.company}</p>
                     </div>
                   </div>
                   <div className="flex mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                      <Star key={i} className="w-5 h-5 text-casa-coral-dark fill-current" />
                     ))}
                   </div>
                   <p className="text-muted-foreground italic">"{testimonial.text}"</p>
@@ -422,7 +429,7 @@ const Index = () => {
       </section>
 
       {/* Contact Form Section */}
-      <section id="contact" className="py-20 bg-background">
+      <section id="contact" className="py-20 bg-white/50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gradient">Обсудим ваш проект?</h2>
@@ -430,7 +437,7 @@ const Index = () => {
           </div>
 
           <div className="max-w-2xl mx-auto">
-            <Card className="border-0 shadow-2xl">
+            <Card className="border-0 shadow-lg bg-white/80">
               <CardContent className="p-8">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
@@ -438,7 +445,7 @@ const Index = () => {
                       placeholder="Ваше имя"
                       value={formData.name}
                       onChange={(e) => setFormData({...formData, name: e.target.value})}
-                      className="text-lg py-6"
+                      className="text-lg py-6 border-casa-gray"
                       required
                     />
                   </div>
@@ -447,13 +454,13 @@ const Index = () => {
                       placeholder="Телефон или Email"
                       value={formData.contact}
                       onChange={(e) => setFormData({...formData, contact: e.target.value})}
-                      className="text-lg py-6"
+                      className="text-lg py-6 border-casa-gray"
                       required
                     />
                   </div>
                   <div>
                     <Select onValueChange={(value) => setFormData({...formData, service: value})}>
-                      <SelectTrigger className="text-lg py-6">
+                      <SelectTrigger className="text-lg py-6 border-casa-gray">
                         <SelectValue placeholder="Выберите услугу" />
                       </SelectTrigger>
                       <SelectContent>
@@ -470,7 +477,7 @@ const Index = () => {
                       placeholder="Расскажите о вашем проекте"
                       value={formData.message}
                       onChange={(e) => setFormData({...formData, message: e.target.value})}
-                      className="text-lg min-h-32"
+                      className="text-lg min-h-32 border-casa-gray"
                     />
                   </div>
                   <Button type="submit" className="w-full btn-primary text-lg py-6">
@@ -488,7 +495,7 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gradient-casa text-white py-16">
+      <footer className="bg-gradient-to-r from-casa-blue-dark to-casa-teal-dark text-white py-16">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
@@ -556,7 +563,7 @@ const Index = () => {
             </div>
             <h3 className="text-2xl font-bold mb-4">Специальное предложение!</h3>
             <p className="text-muted-foreground mb-6">
-              Получите <span className="text-casa-orange font-bold">10% скидку</span> на первый заказ. 
+              Получите <span className="text-casa-coral-dark font-bold">10% скидку</span> на первый заказ. 
               Укажите промокод <span className="font-bold">WELCOME10</span> в форме заявки.
             </p>
             <div className="flex space-x-4">
@@ -573,7 +580,7 @@ const Index = () => {
 
       {/* Floating Chat Button */}
       <div className="fixed bottom-6 right-6 z-50">
-        <Button className="btn-primary rounded-full w-16 h-16 shadow-2xl animate-float">
+        <Button onClick={() => scrollToSection('contact')} className="btn-primary rounded-full w-16 h-16 shadow-lg animate-float">
           <MessageCircle className="w-6 h-6" />
         </Button>
       </div>

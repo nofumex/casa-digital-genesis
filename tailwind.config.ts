@@ -64,12 +64,20 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				casa: {
-					blue: '#1e40af',
-					'blue-light': '#3b82f6',
-					teal: '#0891b2',
-					orange: '#ea580c',
-					purple: '#7c3aed',
-					gray: '#64748b'
+					blue: '#7dd3fc',
+					'blue-dark': '#0ea5e9',
+					teal: '#5eead4',
+					'teal-dark': '#14b8a6',
+					coral: '#fed7aa',
+					'coral-dark': '#f97316',
+					lavender: '#ddd6fe',
+					'lavender-dark': '#8b5cf6',
+					sage: '#d1fae5',
+					'sage-dark': '#10b981',
+					rose: '#fecaca',
+					'rose-dark': '#ef4444',
+					gray: '#f1f5f9',
+					'gray-dark': '#64748b'
 				}
 			},
 			borderRadius: {
@@ -119,7 +127,7 @@ export default {
 						transform: 'translateY(0px)'
 					},
 					'50%': {
-						transform: 'translateY(-10px)'
+						transform: 'translateY(-5px)'
 					}
 				}
 			},
@@ -128,11 +136,12 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.6s ease-out',
 				'slide-up': 'slide-up 0.8s ease-out',
-				'float': 'float 3s ease-in-out infinite'
+				'float': 'float 4s ease-in-out infinite'
 			},
 			backgroundImage: {
-				'gradient-casa': 'linear-gradient(135deg, #1e40af 0%, #0891b2 50%, #7c3aed 100%)',
-				'gradient-hero': 'linear-gradient(135deg, #1e3a8a 0%, #1e40af 25%, #0891b2 75%, #06b6d4 100%)'
+				'gradient-casa': 'linear-gradient(135deg, #7dd3fc 0%, #5eead4 50%, #ddd6fe 100%)',
+				'gradient-hero': 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 25%, #f1f5f9 75%, #f8fafc 100%)',
+				'gradient-soft': 'linear-gradient(135deg, #fef7ff 0%, #f0f9ff 50%, #f0fdfa 100%)'
 			}
 		}
 	},

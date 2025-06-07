@@ -19,7 +19,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 213 86% 34%;
+    --primary: 200 85% 70%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -28,7 +28,7 @@
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 213 86% 34%;
+    --accent: 200 85% 70%;
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 84.2% 60.2%;
@@ -36,9 +36,9 @@
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 213 86% 34%;
+    --ring: 200 85% 70%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -106,23 +106,23 @@
 
 @layer components {
   .glass-effect {
-    @apply backdrop-blur-lg bg-white/10 border border-white/20;
+    @apply backdrop-blur-md bg-white/70 border border-white/30 shadow-lg;
   }
   
   .btn-primary {
-    @apply bg-gradient-to-r from-casa-blue to-casa-teal text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 hover:shadow-2xl hover:scale-105 active:scale-95;
+    @apply bg-gradient-to-r from-casa-blue-dark to-casa-teal-dark text-white px-8 py-4 rounded-2xl font-medium transition-all duration-300 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98];
   }
   
   .btn-secondary {
-    @apply border-2 border-casa-blue text-casa-blue px-8 py-4 rounded-xl font-semibold transition-all duration-300 hover:bg-casa-blue hover:text-white hover:shadow-lg;
+    @apply border-2 border-casa-blue-dark text-casa-blue-dark bg-white/50 px-8 py-4 rounded-2xl font-medium transition-all duration-300 hover:bg-casa-blue-dark hover:text-white hover:shadow-lg;
   }
   
   .text-gradient {
-    @apply bg-gradient-to-r from-casa-blue via-casa-teal to-casa-purple bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-casa-blue-dark via-casa-teal-dark to-casa-lavender-dark bg-clip-text text-transparent;
   }
   
   .card-hover {
-    @apply transition-all duration-300 hover:shadow-2xl hover:-translate-y-2;
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
   }
 }
 
