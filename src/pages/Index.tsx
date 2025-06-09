@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { 
   Code, 
@@ -63,6 +63,11 @@ const Index = () => {
       description: "Мы свяжемся с вами в течение часа.",
     });
     setFormData({ name: '', contact: '', service: '', message: '' });
+  };
+
+  const handleTelegramRedirect = () => {
+    window.open('https://t.me/CasaAgency_bot', '_blank');
+    setShowPromoPopup(false);
   };
 
   const portfolioItems = [
@@ -188,8 +193,15 @@ const Index = () => {
       {/* Header */}
       <header className="fixed top-0 w-full z-50 glass-effect">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="text-2xl font-bold text-slate-800">
-            Casa Digital
+          <div className="flex items-center space-x-3">
+            <img 
+              src="/lovable-uploads/a2c9d05a-49d3-4f7c-bc1b-bf528ea2ee79.png" 
+              alt="Casa Digital Logo" 
+              className="w-10 h-10"
+            />
+            <div className="text-2xl font-bold text-slate-800">
+              Casa Digital
+            </div>
           </div>
           <nav className="hidden md:flex space-x-8">
             <button onClick={() => scrollToSection('about')} className="text-slate-600 hover:text-slate-800 transition-colors">О нас</button>
@@ -319,6 +331,8 @@ const Index = () => {
                   </Card>
                 </DialogTrigger>
                 <DialogContent className="max-w-2xl">
+                  <DialogTitle className="sr-only">{item.title}</DialogTitle>
+                  <DialogDescription className="sr-only">{item.description}</DialogDescription>
                   <div className="space-y-6">
                     <img 
                       src={item.image} 
@@ -554,6 +568,8 @@ const Index = () => {
       {/* Promo Popup */}
       <Dialog open={showPromoPopup} onOpenChange={setShowPromoPopup}>
         <DialogContent className="max-w-md">
+          <DialogTitle className="sr-only">Специальное предложение</DialogTitle>
+          <DialogDescription className="sr-only">Получите скидку на первый заказ</DialogDescription>
           <div className="text-center p-6">
             <div className="w-20 h-20 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full flex items-center justify-center mx-auto mb-6">
               <Award className="w-10 h-10 text-white" />
@@ -563,8 +579,8 @@ const Index = () => {
               Получите <span className="text-orange-500 font-bold">10% скидку</span> на первый заказ. 
               Укажите промокод <span className="font-bold">WELCOME10</span> в форме заявки.
             </p>
-            <Button onClick={() => setShowPromoPopup(false)} className="btn-primary w-full">
-              Получить скидку
+            <Button onClick={handleTelegramRedirect} className="btn-primary w-full">
+              Оставить заявку
             </Button>
           </div>
         </DialogContent>
