@@ -70,6 +70,10 @@ const Index = () => {
     setShowPromoPopup(false);
   };
 
+  const handleTelegramContact = () => {
+    window.open('https://t.me/CasaAgency', '_blank');
+  };
+
   const portfolioItems = [
     {
       id: 1,
@@ -193,15 +197,8 @@ const Index = () => {
       {/* Header */}
       <header className="fixed top-0 w-full z-50 glass-effect">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="flex items-center space-x-3">
-            <img 
-              src="/lovable-uploads/a2c9d05a-49d3-4f7c-bc1b-bf528ea2ee79.png" 
-              alt="Casa Digital Logo" 
-              className="w-10 h-10"
-            />
-            <div className="text-2xl font-bold text-slate-800">
-              Casa Digital
-            </div>
+          <div className="text-2xl font-bold text-slate-800">
+            Casa Digital
           </div>
           <nav className="hidden md:flex space-x-8">
             <button onClick={() => scrollToSection('about')} className="text-slate-600 hover:text-slate-800 transition-colors">О нас</button>
@@ -515,9 +512,12 @@ const Index = () => {
                 Создаем digital-решения, которые приносят реальные результаты вашему бизнесу.
               </p>
               <div className="flex space-x-4">
-                <a href="#" className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                <button 
+                  onClick={handleTelegramContact}
+                  className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
+                >
                   <Send className="w-5 h-5" />
-                </a>
+                </button>
                 <a href="#" className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
                   <Instagram className="w-5 h-5" />
                 </a>
@@ -554,7 +554,7 @@ const Index = () => {
                 </div>
                 <div className="flex items-center">
                   <Send className="w-5 h-5 mr-3" />
-                  <span>@casadigital_agency</span>
+                  <span>@CasaAgency</span>
                 </div>
               </div>
             </div>
@@ -580,7 +580,7 @@ const Index = () => {
               Укажите промокод <span className="font-bold">WELCOME10</span> в форме заявки.
             </p>
             <Button onClick={handleTelegramRedirect} className="btn-primary w-full">
-              Оставить заявку
+              Получить скидку
             </Button>
           </div>
         </DialogContent>
