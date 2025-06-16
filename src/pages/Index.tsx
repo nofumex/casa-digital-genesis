@@ -7,6 +7,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
+import logo from "../../public/Logo.png"
+import ProjectPic from "../../public/SoonProject.jpg"
 import { 
   Code, 
   Palette, 
@@ -55,15 +57,36 @@ const Index = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    toast({
-      title: "Заявка отправлена!",
-      description: "Мы свяжемся с вами в течение часа.",
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  const message = `
+💬 Новая заявка с сайта:
+👤 Имя: ${formData.name}
+📞 Контакт: ${formData.contact}
+📦 Услуга: ${formData.service}
+📝 Сообщение: ${formData.message}
+  `;
+
+  try {
+    await fetch("https://api.telegram.org/bot7895325617:AAEWaaycYgn75abmpL3QNqNoRsolbsssilM/sendMessage", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        chat_id: "7727079839",
+        text: message,
+      }),
     });
-    setFormData({ name: '', contact: '', service: '', message: '' });
-  };
+
+    alert("Заявка успешно отправлена!");
+  } catch (error) {
+    console.error("Ошибка отправки в Telegram:", error);
+    alert("Ошибка отправки заявки. Попробуйте позже.");
+  }
+};
+
 
   const handleTelegramRedirect = () => {
     window.open('https://t.me/CasaAgency_bot', '_blank');
@@ -74,12 +97,16 @@ const Index = () => {
     window.open('https://t.me/CasaAgency', '_blank');
   };
 
+  const handleTelegramSupprot = () => {
+    window.open('https://t.me/CasaSupport', '_blank');
+  };
+
   const portfolioItems = [
     {
       id: 1,
       title: "Интернет-магазин модной одежды",
       category: "Интернет-магазины",
-      image: `https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=300&fit=crop`,
+      image: ProjectPic,
       results: "Увеличили конверсию на 45%",
       tech: ["React", "Node.js", "Stripe"],
       description: "Создали современный интернет-магазин с интуитивным интерфейсом и быстрой загрузкой"
@@ -88,7 +115,7 @@ const Index = () => {
       id: 2,
       title: "Корпоративный сайт IT-компании",
       category: "Корпоративные сайты",
-      image: `https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=500&h=300&fit=crop`,
+      image: ProjectPic,
       results: "Рост лидов на 60%",
       tech: ["Vue.js", "Laravel", "CRM"],
       description: "Разработали корпоративный сайт с интеграцией CRM и автоматизацией процессов"
@@ -97,7 +124,7 @@ const Index = () => {
       id: 3,
       title: "Лендинг для стартапа",
       category: "Лендинги",
-      image: `https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=500&h=300&fit=crop`,
+      image: ProjectPic,
       results: "Конверсия 8.5%",
       tech: ["Next.js", "Tailwind", "Analytics"],
       description: "Создали высококонвертирующий лендинг с A/B тестированием и аналитикой"
@@ -106,7 +133,7 @@ const Index = () => {
       id: 4,
       title: "Платформа онлайн-обучения",
       category: "Образование",
-      image: `https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&h=300&fit=crop`,
+      image: ProjectPic,
       results: "10000+ пользователей",
       tech: ["React", "Node.js", "MongoDB"],
       description: "Разработали образовательную платформу с видеоуроками и интерактивными заданиями"
@@ -115,7 +142,7 @@ const Index = () => {
       id: 5,
       title: "Сайт ресторана премиум-класса",
       category: "HoReCa",
-      image: `https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&h=300&fit=crop`,
+      image: ProjectPic,
       results: "Рост бронирований на 40%",
       tech: ["WordPress", "Custom Theme", "Booking"],
       description: "Создали элегантный сайт ресторана с системой онлайн-бронирования"
@@ -124,7 +151,7 @@ const Index = () => {
       id: 6,
       title: "Медицинский портал",
       category: "Медицина",
-      image: `https://images.unsplash.com/photo-1483058712412-4245e9b90334?w=500&h=300&fit=crop`,
+      image: ProjectPic,
       results: "Упростили запись на 70%",
       tech: ["React", "Python", "PostgreSQL"],
       description: "Разработали медицинский портал с онлайн-записью и телемедициной"
@@ -161,25 +188,25 @@ const Index = () => {
   const testimonials = [
     {
       name: "Александр Петров",
-      company: "TechCorp",
+      company: "Название бизнеса клиента",
       role: "Генеральный директор",
-      text: "Casa Digital превзошли все наши ожидания. Новый сайт увеличил количество лидов в 3 раза!",
+      text: "Скоро здесь будет текст отзыва клиента",
       rating: 5,
       avatar: `https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=100&h=100&fit=crop&crop=face`
     },
     {
       name: "Елена Сидорова", 
-      company: "Fashion Boutique",
+      company: "Название бизнеса клиента",
       role: "Владелец бизнеса",
-      text: "Профессиональная команда, отличный результат. Рекомендую всем, кто хочет серьезно заняться digital!",
+      text: "Скоро здесь будет текст отзыва клиента",
       rating: 5,
-      avatar: `https://images.unsplash.com/photo-1494790108755-2616b332c302?w=100&h=100&fit=crop&crop=face`
+      avatar: `http://bing.com/th/id/BCO.d18f7a00-cf69-4aba-bfbb-a765590832ba.png?w=100&h=100&fit=crop&crop=face`
     },
     {
       name: "Михаил Козлов",
-      company: "StartupX",
+      company: "Название бизнеса клиента",
       role: "СЕО",
-      text: "Запустили стартап с нуля до первых продаж за 2 месяца. Casa Digital - наши надежные партнеры!",
+      text: "Скоро здесь будет текст отзыва клиента",
       rating: 5,
       avatar: `https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face`
     }
@@ -189,7 +216,7 @@ const Index = () => {
   const categories = ['Все', 'Интернет-магазины', 'Корпоративные сайты', 'Лендинги', 'Образование', 'HoReCa', 'Медицина'];
 
   const filteredPortfolio = selectedCategory === 'Все' 
-    ? portfolioItems 
+    ? portfolioItems
     : portfolioItems.filter(item => item.category === selectedCategory);
 
   return (
@@ -197,9 +224,13 @@ const Index = () => {
       {/* Header */}
       <header className="fixed top-0 w-full z-50 glass-effect">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="text-2xl font-bold text-slate-800">
-            Casa Digital
+          <div className="flex items-center space-x-4">
+            <img src={logo} alt='' width="45" height="45" />
+            <div className="text-2xl font-bold text-slate-800">
+              Casa Digital
+            </div>
           </div>
+
           <nav className="hidden md:flex space-x-8">
             <button onClick={() => scrollToSection('about')} className="text-slate-600 hover:text-slate-800 transition-colors">О нас</button>
             <button onClick={() => scrollToSection('portfolio')} className="text-slate-600 hover:text-slate-800 transition-colors">Портфолио</button>
@@ -207,6 +238,7 @@ const Index = () => {
             <button onClick={() => scrollToSection('contact')} className="text-slate-600 hover:text-slate-800 transition-colors">Контакты</button>
           </nav>
         </div>
+
       </header>
 
       {/* Hero Section */}
@@ -518,9 +550,9 @@ const Index = () => {
                 >
                   <Send className="w-5 h-5" />
                 </button>
-                <a href="#" className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                {/* <a href="#" className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
                   <Instagram className="w-5 h-5" />
-                </a>
+                </a> */}
               </div>
             </div>
             <div>
@@ -538,7 +570,6 @@ const Index = () => {
                 <li><a href="#" className="hover:text-white transition-colors">О нас</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Портфолио</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Кейсы</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Блог</a></li>
               </ul>
             </div>
             <div>
@@ -546,7 +577,7 @@ const Index = () => {
               <div className="space-y-4 text-white/80">
                 <div className="flex items-center">
                   <Phone className="w-5 h-5 mr-3" />
-                  <span>+7 (999) 123-45-67</span>
+                  <span>+7 (996) 428-79-75</span>
                 </div>
                 <div className="flex items-center">
                   <Mail className="w-5 h-5 mr-3" />
@@ -554,7 +585,7 @@ const Index = () => {
                 </div>
                 <div className="flex items-center">
                   <Send className="w-5 h-5 mr-3" />
-                  <span>@CasaAgency</span>
+                  <span>@CasaSupport</span>
                 </div>
               </div>
             </div>
@@ -588,7 +619,7 @@ const Index = () => {
 
       {/* Floating Chat Button */}
       <div className="fixed bottom-6 right-6 z-50">
-        <Button onClick={() => scrollToSection('contact')} className="btn-primary rounded-full w-16 h-16 shadow-lg animate-float">
+        <Button onClick={handleTelegramSupprot} className="btn-primary rounded-full w-16 h-16 shadow-lg animate-float">
           <MessageCircle className="w-6 h-6" />
         </Button>
       </div>
